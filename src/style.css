@@ -7,6 +7,15 @@
 body{
   font-family: sans-serif;
 }
+
+i{
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: #fff;
+}
 /* !navbar styles are starting here */
 .navbar{
   background-color: #676668;
@@ -26,6 +35,7 @@ body{
   padding: 5px;
   font-size: 30px;
   border-radius: 5px;
+  
 }
 .cartAmount{
   position: absolute;

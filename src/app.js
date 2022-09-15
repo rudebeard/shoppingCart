@@ -1,35 +1,6 @@
 
 const shop = document.querySelector('#shop');
 
-const shopItemsData = [
-  {
-  id:'aga',
-  name:'casual shirt',
-  price:45,
-  desc:"Lorem ipsum dolor sit amet.",
-  img:"./images/img-1.jpg"
-},
-
-{ id:'sen',
-name:'Official',
-price:100,
-desc:"Lorem ipsum dolor sit amet.",
-img:"./images/img-2.jpg"},
-
-{ id:'nereden',
-name:'Daily shirt',
-price:85,
-desc:"Lorem ipsum dolor sit amet.",
-img:"./images/img-3.jpg"},
-
-{
-  id:'ciktin',
-  name:'Mans suit',
-  price:300,
-  desc:"Lorem ipsum dolor sit amet.",
-  img:"./images/img-4.jpg"
-}
-];
 
 
 let basket= JSON.parse(localStorage.getItem("data")) || [];
@@ -70,21 +41,24 @@ let increment = (id)=>{
   }else {
     search.item++;
   }
-  localStorage.setItem("data",JSON.stringify(basket))
-  console.log(basket)
   upgrade(selectedItem.id)
+  localStorage.setItem("data",JSON.stringify(basket))
 }
 
 let decrement = (id) =>{
   let selectedItem= id;
   let search = basket.find((x)=>x.id===selectedItem.id);
 
-  if(search.item===0) return;
+  if(search===undefined)return;
+  
+  else if(search.item===0) return;
    else {
     search.item--;
   } 
-  localStorage.setItem("data",JSON.stringify(basket))
   upgrade(selectedItem.id)
+  basket=basket.filter((x)=>x.item !== 0)
+
+  localStorage.setItem("data",JSON.stringify(basket));
 }
 
 let upgrade = (id)=>{
