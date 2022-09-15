@@ -1,4 +1,4 @@
-const shopItemsData=[
+[
   {
     id: "jfhgbvnscs",
     name: "Casual Shirt",

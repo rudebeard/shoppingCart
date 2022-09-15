@@ -96,3 +96,75 @@ a{
 .bi-plus{
   color: green;
 }
+
+/* !style rules for label */
+
+
+.text-center{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.HomeBtn , .checkout,.removeAll{
+  background-color: #212529;
+  color: #fff;
+  border: none;
+  padding: 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.checkout{
+  background-color: green;
+}
+
+.removeAll{
+  background-color:red;
+}
+
+.bi-x-lg{
+  color: red;
+  font-weight: bold;
+}
+
+
+/* rules for shopping cart */
+
+.shopping-cart{
+  display: grid;
+  grid-template-columns: repeat(1,320px);
+  justify-content: center;
+  gap: 22px;
+}
+
+.cart-item{
+  border: 2px solid #212529;
+  border-radius: 2px;
+  display: flex;
+}
+.cart-item img{
+  border-radius: 2px;
+}
+
+.title-price-x{
+  width: 195px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.title-price{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-item-price{
+  background-color: #212529;
+  color:white;
+  border-radius: 4px;
+  padding: 3px 6px;
+}
+
+
