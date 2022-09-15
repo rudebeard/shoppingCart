@@ -32,11 +32,13 @@ img:"./images/img-3.jpg"},
 ];
 
 
-let basket= [];
+let basket= JSON.parse(localStorage.getItem("data")) || [];
 
 let generateShop = ()=>{
   return (shop.innerHTML= shopItemsData.map((x)=>{
     let {id,name,price,desc,img} = x;
+    let search = basket.find((x)=>x.id===id) || [];
+   
     return `
     <div id="${id}"  class="item">
     <img width="250" src=${img} alt="">
@@ -47,7 +49,7 @@ let generateShop = ()=>{
         <h2> $ ${price}</h2>
         <div class="buttons">
           <i onclick="increment(${id})" class="bi bi-plus"></i>
-          <div id = "${id}" class="quantity">0</div>
+          <div id = "${id}" class="quantity">${search.item===undefined?0:search.item}</div>
           <i onclick="decrement(${id})" class="bi bi-dash"></i>
         </div>
       </div>
@@ -59,36 +61,48 @@ generateShop();
 
 let increment = (id)=>{
   let selectedItem= id;
-  let sera = basket.find((x)=>x.id===selectedItem.id);
-  if(sera===undefined){
+  let search = basket.find((x)=>x.id===selectedItem.id);
+  if(search===undefined){
     basket.push({
       id:selectedItem.id,
       item:1,
     });
   }else {
-    sera.item++;
+    search.item++;
   }
-  upgrade()
+  localStorage.setItem("data",JSON.stringify(basket))
+  console.log(basket)
+  upgrade(selectedItem.id)
 }
 
 let decrement = (id) =>{
   let selectedItem= id;
-  let sera = basket.find((x)=>x.id===selectedItem.id);
+  let search = basket.find((x)=>x.id===selectedItem.id);
 
-  if(sera.item===0) return;
+  if(search.item===0) return;
    else {
-    sera.item--;
+    search.item--;
   } 
-  upgrade()
+  localStorage.setItem("data",JSON.stringify(basket))
+  upgrade(selectedItem.id)
 }
 
-let upgrade = ()=>{
-  console.log('upgrade function is working')
+let upgrade = (id)=>{
+  let search = basket.find((x)=>x.id===id)
+  console.log(search.item)
+  document.getElementById(id).innerHTML = search.item;
+  calc();
 }
 
 
 
+let calc = ()=>{
+  let cartIcon = document.getElementById("cartAmount");
+  cartIcon.innerHTML=basket.map((x)=>x.item).reduce((acc,it)=>acc+it,0)
+  localStorage.setItem("data",JSON.stringify(basket))
+}
 
+calc();
 
 
 
